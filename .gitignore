@@ -1,0 +1,31 @@
+/.env
+/.idea
+/vendor
+.DS_Store
+### CraftCMS template
+/craft/storage/runtime
+/craft/storage/backups
+
+### User-specific stuff
+.idea
+.DS_Store
+/*.sql
+!/database.sql
+.htaccess
+web.config
++nginx.conf
+craft/config/db.php
+craft/config/general.php
+craft/config/logHelper.php
+script/.local_config
+script/*.sh
+craft/plugins/**/*.sh
+
+### Asset pipeline
+node_modules
+*.lock
+.travis.yml
+.scrutinizer.yml
+Caddyfile
+craft/config/*.key
+logs

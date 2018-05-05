@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+
+    <link href="/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="/assets/style.css">
+    {% block extra_stylesheets %}{% endblock %}
+
+</head>
+
+<body>
+
+<div class="for_top">
+
+</div>
+
+<main class="global-container">
+
+    {% block content %}
+        {% block news_content %}{% endblock %}
+        {% block specal_content %}{% endblock %}
+    {% endblock %}
+
+    {% block common %}{% endblock %}
+    {% block specific %}{% endblock %}
+
+</main>
+
+{% block extra_scripts %}{% endblock %}
+
+</body>
+</html>

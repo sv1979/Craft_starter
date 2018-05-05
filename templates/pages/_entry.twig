@@ -1,0 +1,12 @@
+{% extends [
+    '_custom/' ~ entry.slug,
+    '_layout'
+    ] %}
+
+{% block common %}
+    <a href="/">Homepage</a>
+    Common content for subpages is here
+    <br>
+{% endblock %}
+
+{% block content %}{% endblock %}
