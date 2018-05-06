@@ -1,6 +1,7 @@
-import './style.css';
+import 'bootstrap';
+import './style.scss';
 
 console.log('in js file');
-// $(document).ready(()=>{
-//     alert(4)
-// });
+$(document).ready(()=>{
+
+});
