@@ -4,19 +4,13 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import "mixins";
 
-body {
-  color: red;
-}
-
-footer {
-  height: 100px;
-  background-color: grey;
-  border-radius: 5px;
-  border: 1px solid greenyellow;
-  @include green_text;
-}
-@include media-breakpoint-down(sm) {
-  footer {
-    background-color: olive;
+.header {
+  background-color: $grey;
+  .navbar {
+    //padding: 0 1rem;
+  }
+  &__logo {
+    width: 15rem;
+    height: auto;
   }
 }
