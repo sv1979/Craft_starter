@@ -2,34 +2,65 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="#">
-                <img src="{{ siteInfo.siteDesktopLogo.one().getUrl() }}" class="header__logo img-responsive" alt="Smart Vent">
+                <img src="{{ siteInfo.siteDesktopLogo.one().getUrl() }}" class="header__logo img-responsive"
+                     alt="Smart Vent">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+
             <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li class="nav-item ">
-                        <a class="nav-link {% if craft.request.firstSegment == '' %}active{% endif %}" href="/">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if craft.request.firstSegment == 'about' %}active{% endif %}" href="/about">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                </ul>
 
+                    {% set entries = craft.entries.section('navigation') %}
+                    {% for entry in entries if entry.navigationPosition=='top' %}
+
+                        {% if entry.linkSet|length %}
+                            {% for link in entry.linkSet %}
+
+                                {% set linkActive = false %}
+                                {% if craft.request.firstSegment in link.linkUrl %}
+                                    {% set linkActive = true %}
+                                {% endif %}
+                                {% if craft.request.firstSegment == '' and link.linkUrl == '/' %}
+                                    {% set linkActive = true %}
+                                {% endif %}
+
+                                <li class="nav-item ">
+                                    <a class="nav-link {% if linkActive  %}active{% endif %}"
+                                       {% if link.openInNewTab == 1 %}target="_blank"{% endif %}
+                                       href="{{ link.linkUrl }}">{{ link.linkText }}</a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
             </div>
+
+            {#<div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">#}
+            {#<ul class="navbar-nav">#}
+            {#<li class="nav-item ">#}
+            {#<a class="nav-link {% if craft.request.firstSegment == '' %}active{% endif %}" href="/">Home <span class="sr-only">(current)</span></a>#}
+            {#</li>#}
+            {#<li class="nav-item">#}
+            {#<a class="nav-link {% if craft.request.firstSegment == 'about' %}active{% endif %}" href="/about">About</a>#}
+            {#</li>#}
+            {#<li class="nav-item dropdown">#}
+            {#<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+            {#Dropdown#}
+            {#</a>#}
+            {#<div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+            {#<a class="dropdown-item" href="#">Action</a>#}
+            {#<a class="dropdown-item" href="#">Another action</a>#}
+            {#<div class="dropdown-divider"></div>#}
+            {#<a class="dropdown-item" href="#">Something else here</a>#}
+            {#</div>#}
+            {#</li>#}
+            {#</ul>#}
+            {#</div>#}
         </nav>
     </div>
 </header>

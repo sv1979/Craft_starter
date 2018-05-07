@@ -1,0 +1,69 @@
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mr-md-auto">
+                <a href="/" class="">
+                    <img src="{{ siteInfo.siteDesktopLogo.one().getUrl() }}" alt="Smart Vent"
+                         class="img-responsive footer__logo">
+                </a>
+                <div>
+                    {{ siteInfo.footerInfoText }}
+                </div>
+            </div>
+            {% set entries = craft.entries({
+                section: 'navigation',
+                navigationPosition: 'bottom'
+            }) %}
+            {#{% set entries = craft.entries.section('navigation') %}#}
+            {% for entry in entries %}
+                <div class="col-md-2 col-sm-6">
+                    <div class="footer__header">
+                        {{ entry.header }}
+                    </div>
+                    <div class="footer__links">
+                        <ul>
+                        {% if entry.linkSet|length %}
+                            {% for link in entry.linkSet %}
+
+                                {% set linkActive = false %}
+                                {% if craft.request.firstSegment in link.linkUrl %}
+                                    {% set linkActive = true %}
+                                {% endif %}
+                                {% if craft.request.firstSegment == '' and link.linkUrl == '/' %}
+                                    {% set linkActive = true %}
+                                {% endif %}
+
+                                <li class="footer__nav-item">
+                                    <a class="footer__nav-link {% if linkActive  %}active{% endif %}"
+                                       {% if link.openInNewTab == 1 %}target="_blank"{% endif %}
+                                       href="{{ link.linkUrl }}">{{ link.linkText }}</a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                        </ul>
+                    </div>
+
+                    {% if loop.last %}
+                        <div class="footer__header">
+                            Social
+                        </div>
+                        <div class="footer__links">
+                            {% for row in siteInfo.socialLinks %}
+                                <a href="{{ row.linkurl }}" rel="nofollow"
+                                   class="footer__social" target="_blank"
+                                   title="Follow Us">
+                                    {{ row.linksvg|raw }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</footer>
+<div class="copyright">
+    <div class="container">
+        {{ siteInfo.copyright }}
+    </div>
+</div>

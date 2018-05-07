@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import '../node_modules/bootstrap/scss/_functions.scss';
 @import '../node_modules/bootstrap/scss/_variables.scss';
 @import '../node_modules/bootstrap/scss/_mixins.scss';
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import "mixins";
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.42857;
+}
 
 .header {
   background-color: $grey;
@@ -12,5 +19,54 @@
   &__logo {
     width: 15rem;
     height: auto;
+  }
+}
+
+.footer {
+  border-top: 1px solid $fog;
+  padding: 60px 0;
+  &__logo {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+  &__header {
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  &__links {
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+    padding: 0;
+    font-size: 11px;
+  }
+  &__nav-link {
+    display: block;
+    color: $text;
+    margin-bottom: 4px;
+    &:hover {
+      color: $green;
+    }
+  }
+  &__social {
+    outline: none;
+    font-size: 0;
+    &:hover {
+      outline: none;
+    }
+  }
+}
+
+.copyright {
+  border-top: 1px solid $fog;
+  font-size: 13px;
+  padding: 20px 0;
+  a {
+    color: $text;
+    &:hover, &:focus {
+      color: $green;
+    }
   }
 }

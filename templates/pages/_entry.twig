@@ -3,10 +3,23 @@
     '_layout'
     ] %}
 
-{% block common %}
-    <a href="/">Homepage</a>
-    Common content for subpages is here
-    <br>
+{% block header %}
+    {% if entry.headerImage.first() != null %}
+        {% set header_image_desktop = entry.headerImage.first().url %}
+        
+        <header class="image_header" style="background-image: url({{ header_image_desktop }});">
+            {{ entry.headerText }}
+        </header>
+    {% endif %}
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block common %}
+
+    Common content for subpages is here
+
+{% endblock %}
+
+{% block specific %}
+    {{ parent() }}
+    test
+{% endblock %}
