@@ -14,17 +14,22 @@
             <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
 
-                    {% set entries = craft.entries.section('navigation') %}
-                    {% for entry in entries if entry.navigationPosition=='top' %}
+                    {% set params = {
+                        section: 'navigation',
+                        navigationPosition: 'top'
+                    } %}
+                    {% set entries = craft.entries(params).all() %}
+
+                    {% for entry in entries %}
 
                         {% if entry.linkSet|length %}
                             {% for link in entry.linkSet %}
 
                                 {% set linkActive = false %}
-                                {% if craft.request.firstSegment in link.linkUrl %}
+                                {% if craft.app.request.segments|first in link.linkUrl %}
                                     {% set linkActive = true %}
                                 {% endif %}
-                                {% if craft.request.firstSegment == '' and link.linkUrl == '/' %}
+                                {% if craft.app.request.segments|first == '' and link.linkUrl == '/' %}
                                     {% set linkActive = true %}
                                 {% endif %}
 

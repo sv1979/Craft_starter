@@ -10,10 +10,12 @@
                     {{ siteInfo.footerInfoText }}
                 </div>
             </div>
-            {% set entries = craft.entries({
+            {% set params = {
                 section: 'navigation',
                 navigationPosition: 'bottom'
-            }) %}
+            } %}
+            {% set entries = craft.entries(params).all() %}
+
             {#{% set entries = craft.entries.section('navigation') %}#}
             {% for entry in entries %}
                 <div class="col-md-2 col-sm-6">
@@ -26,10 +28,10 @@
                             {% for link in entry.linkSet %}
 
                                 {% set linkActive = false %}
-                                {% if craft.request.firstSegment in link.linkUrl %}
+                                {% if craft.app.request.segments|first in link.linkUrl %}
                                     {% set linkActive = true %}
                                 {% endif %}
-                                {% if craft.request.firstSegment == '' and link.linkUrl == '/' %}
+                                {% if craft.app.request.segments|first == '' and link.linkUrl == '/' %}
                                     {% set linkActive = true %}
                                 {% endif %}
 
