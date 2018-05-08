@@ -13,9 +13,6 @@ body {
 
 .header {
   background-color: $grey;
-  .navbar {
-    //padding: 0 1rem;
-  }
   &__logo {
     width: 15rem;
     height: auto;
@@ -67,6 +64,24 @@ body {
     color: $text;
     &:hover, &:focus {
       color: $green;
+    }
+  }
+}
+
+.image_header {
+  padding: 100px;
+}
+
+.iac {
+  &__content {
+    padding: 4rem 3rem;
+  }
+  &__image {
+    @include bg();
+  }
+  @include media-breakpoint-down(sm) {
+    &__content {
+      padding: 2rem 0;
     }
   }
 }

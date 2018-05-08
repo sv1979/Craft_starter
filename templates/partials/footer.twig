@@ -16,7 +16,6 @@
             } %}
             {% set entries = craft.entries(params).all() %}
 
-            {#{% set entries = craft.entries.section('navigation') %}#}
             {% for entry in entries %}
                 <div class="col-md-2 col-sm-6">
                     <div class="footer__header">
@@ -24,21 +23,26 @@
                     </div>
                     <div class="footer__links">
                         <ul>
-                        {% if entry.linkSet|length %}
-                            {% for link in entry.linkSet %}
+                        {% if entry.linksSet|length %}
+                            {% for link in entry.linksSet.all() %}
+
+                                {% set destination = link.destination %}
+                                {% if link.entryToLink|length %}
+                                    {% set destination = link.entryToLink.one().url %}
+                                {% endif %}
 
                                 {% set linkActive = false %}
-                                {% if craft.app.request.segments|first in link.linkUrl %}
+                                {% if craft.app.request.segments|first in destination %}
                                     {% set linkActive = true %}
                                 {% endif %}
-                                {% if craft.app.request.segments|first == '' and link.linkUrl == '/' %}
+                                {% if craft.app.request.segments|first == '' and destination == siteUrl %}
                                     {% set linkActive = true %}
                                 {% endif %}
 
                                 <li class="footer__nav-item">
                                     <a class="footer__nav-link {% if linkActive  %}active{% endif %}"
                                        {% if link.openInNewTab == 1 %}target="_blank"{% endif %}
-                                       href="{{ link.linkUrl }}">{{ link.linkText }}</a>
+                                       href="{{ destination }}">{{ link.text }}</a>
                                 </li>
                             {% endfor %}
                         {% endif %}

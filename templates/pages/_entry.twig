@@ -13,6 +13,20 @@
     {% endif %}
 {% endblock %}
 
+{% block content %}
+
+    {% if entry.contentBlock|length %}
+
+        {% for block in entry.contentBlock %}
+
+            {% include 'partials/content_blocks/'~block.type %}
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}
+
 {% block common %}
 
     Common content for subpages is here

@@ -1,0 +1,20 @@
+{% set bgImage = block.image.one().url %}
+
+<div class="container iac">
+    <div class="row">
+        <div class="col-md-6 iac__content">
+            <div class="row align-items-center">
+                <div class="col">
+                    {{ block.block_content }}
+
+                    {% if block.buttonText is not empty and block.buttonLink is not empty %}
+                        <a href="{{ block.buttonLink }}" class="styled_button">
+                            {{ block.buttonText }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 iac__image" style="background-image: url({{ bgImage }});"></div>
+    </div>
+</div>
