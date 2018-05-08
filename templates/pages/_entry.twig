@@ -8,7 +8,7 @@
         {% set header_image_desktop = entry.headerImage.one().url %}
         
         <header class="image_header" style="background-image: url({{ header_image_desktop }});">
-            {{ entry.headerText }}
+            <div class="image_header__text">{{ entry.headerText }}</div>
         </header>
     {% endif %}
 {% endblock %}

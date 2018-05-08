@@ -11,11 +11,31 @@ body {
   line-height: 1.42857;
 }
 
+main {
+  margin-top: 60px;
+}
+
 .header {
   background-color: $grey;
   &__logo {
     width: 15rem;
     height: auto;
+  }
+  .navbar {
+    background-color: $grey;
+    padding: 5px 1rem;
+    .container {
+      align-items: flex-end;
+    }
+    .dropdown:hover>.dropdown-menu {
+      display: block;
+    }
+    .dropdown>.dropdown-toggle:active {
+      pointer-events: none;
+    }
+  }
+  .nav-link {
+    color: $white;
   }
 }
 
@@ -69,7 +89,17 @@ body {
 }
 
 .image_header {
-  padding: 100px;
+  @include bg();
+  min-height: 300px;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: flex-end;
+  justify-content: flex-end;
+  &__text {
+    color: $white;
+  }
 }
 
 .iac {
@@ -85,3 +115,5 @@ body {
     }
   }
 }
+
+.navbar-toggler-icon {}
